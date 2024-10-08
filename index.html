@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Felipe's Calculator</title>
     <link rel="stylesheet" href="./styles.css">
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="main.js" defer></script>
 </head>
 
-<body onload="displayCalculation()">
+<body>
     <div class="carcass">
         <div class="screen">
             <strong><span id="calculation"></span></strong>
@@ -31,6 +31,11 @@
                     <div class="number">8</div>
                     <div class="number">9</div>
                 </div>
+                <div class="number_row">
+                    <div class="number">0</div>
+                    <div class="point">. </div>
+                    
+                </div>
             </div>
             <div class="row">
                 <div class="operators">
@@ -42,10 +47,11 @@
                     <div class="operator divide">÷</div>
                 </div>
                 <div class="operators">
-                    <div class="operator multiply">bs</div>
-                    <div class="operator divide">C</div>
+                    <div class="operator bs"><-</div>
+                    <div class="operator clear">C</div>
                 </div>
             </div>
+            <div class="operator equal"><span>=</span></div>
         </div>
 
 
