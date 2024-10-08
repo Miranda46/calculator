@@ -1,0 +1,110 @@
+.numbers {
+    display: flex;
+    flex-direction: column;
+}
+
+.screen {
+    padding: 1rem;
+    margin: 1rem;
+    font-size: larger;
+    background-color: white;
+    border: 2px solid gray;
+    color: darkslategrey;
+    border-radius: 1px;
+    width: 70%;
+}
+
+.carcass {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    background-color: antiquewhite;
+    background-color: gray;
+    border: 2px solid black;
+    border-radius: 1px;
+    padding: 1rem;
+    width: 40%;
+    max-width: 330px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.operators {
+    flex-direction: row;
+    margin-left: 1px;
+}
+
+.operator {
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #3b4e5d;
+    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #3b739d;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.15385;
+    margin: 3px;
+    outline: none;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
+    width: 40%;
+
+}
+
+.number {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 3px;
+  outline: none;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.number:hover,
+.number:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.number:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.number:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
+}
