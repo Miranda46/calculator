@@ -141,6 +141,15 @@ function handleEquals(event){
     }
 
     else if(miniMenu.operation === 'div'){
+        if (miniMenu.rightSide == 0){
+            clearMiniMenu();
+            displayCalculation("MATH ERR!");
+            setTimeout(() => {
+                clearScreen();
+            }, 1000);
+            
+            return;
+        }
         total = (+miniMenu.leftSide) / (+miniMenu.rightSide);
         display(total.toPrecision(3)); 
     }
