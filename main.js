@@ -5,8 +5,15 @@ miniMenu.ans = 0;
 miniMenu.leftSide = "";
 miniMenu.rightSide = "";
 
+
+
 function sumStrings(a,b) { 
     return ((BigInt(a)) + BigInt(b)).toString();
+}
+
+function updateCalculation(){
+    str = miniMenu.leftSide + " " + miniMenu.operationSign + " " + miniMenu.rightSide;
+    document.getElementById("calculation").innerHTML = str;
 }
 
 function displayCalculation(number){
@@ -16,8 +23,8 @@ function displayCalculation(number){
     else {
         miniMenu.rightSide += number;
     }
-    str = miniMenu.leftSide + " " + miniMenu.operationSign + " " + miniMenu.rightSide;
-    document.getElementById("calculation").innerHTML = str;
+    updateCalculation();
+    
 }
 
 function display(number){
@@ -27,8 +34,6 @@ function display(number){
 function getCalculation(){
     return document.getElementById("calculation").innerHTML;
 }
-
-
 
 function addListener(type, func, name){
     name.addEventListener(type, func);
@@ -57,11 +62,32 @@ function handleBackspace(event) {
 }
 
 function handleOperators(name, display){
-    miniMenu.operation = name;
-    str = getCalculation();
-    miniMenu.leftSide = str;
-    miniMenu.operationSign = display;
-    displayCalculation("");
+    if (miniMenu.operationSign !== "" && miniMenu.rightSide == "")
+    {
+        miniMenu.operationSign = display;
+        miniMenu.operation = name;
+        updateCalculation("");
+        return;
+    }
+    if (miniMenu.operationSign == "")
+    {
+        miniMenu.operation = name;
+        str = getCalculation();
+        miniMenu.leftSide = str;
+        miniMenu.operationSign = display;
+        displayCalculation("");
+        return;
+    }
+    if (miniMenu.operationSign !== "" && miniMenu.rightSide != ""){
+        handleEquals("");
+        miniMenu.leftSide = miniMenu.ans;
+        miniMenu.ans = "";
+        miniMenu.operationSign = display;
+        miniMenu.operation = name;
+        updateCalculation();
+
+    }
+
 }
 
 const plus = document.querySelector(".sum");
@@ -120,7 +146,6 @@ function handlePoint(event){
 const equal = document.querySelector(".equal");
 equal.addEventListener('click', handleEquals);
 function handleEquals(event){
-    console.log(miniMenu)
     let total = 0;
     if (miniMenu.operation == "") {
        return; 
