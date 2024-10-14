@@ -8,11 +8,16 @@ miniMenu.rightSide = "";
 
 
 function sumStrings(a,b) { 
-    return ((BigInt(a)) + BigInt(b)).toString();
+    return ((+(a)) + (+b)).toString();
 }
 
 function updateCalculation(){
-    str = miniMenu.leftSide + " " + miniMenu.operationSign + " " + miniMenu.rightSide;
+    if (miniMenu.operationSign != ""){
+        str = miniMenu.leftSide + " " + miniMenu.operationSign + " " + miniMenu.rightSide;
+    }
+    else {
+        str = miniMenu.leftSide;
+    }
     document.getElementById("calculation").innerHTML = str;
 }
 
@@ -47,6 +52,34 @@ numbers.forEach((number) => {
 function handleClick(event) {
     displayCalculation(event.target.innerHTML);
 }
+
+document.addEventListener("keydown", (e) => {
+    if (e.key in [0,1,2,3,4,5,6,7,8,9]){
+        displayCalculation(e.key);
+    }
+    else if (e.key == "/") {
+        handleDivide();
+    }
+    else if (e.key == "+") {
+        handlePlus();
+    }
+    else if (e.key == "-") {
+        handleMinus();
+    }
+    else if (e.key == "x" || e.key == "*") {
+        handleMult();
+    }
+    else if (e.key == "=" || e.key == 'Enter') {
+        handleEquals();
+    }
+    else if (e.key == ".") {
+        handlePoint();
+    }
+    else if (e.key == "Backspace") {
+        handleBackspace();
+    }
+
+  });
 
 const bs = document.querySelector(".bs");
 bs.addEventListener('click', handleBackspace)
@@ -127,18 +160,36 @@ function clearScreen(event){
     clearMiniMenu();
 }
 
+function riseError(e = "MATH ERR!"){
+    clearMiniMenu();
+    displayCalculation(e);
+    setTimeout(() => {
+        clearScreen();
+    }, 1000);
+}
+
+function getSide(){
+    if (miniMenu.operationSign === ""){
+        return miniMenu.leftSide;
+    }
+    else{
+        return miniMenu.rightSide;
+    }
+}
+
 const point = document.querySelector(".point");
 point.addEventListener('click', handlePoint);
 function handlePoint(event){
-    last = document.getElementById("calculation").innerHTML.slice(-1)
+    str = getSide();
+    last = str.slice(-1)
     if (last === ".")
     {
         return;
     }
-    else if (last === ' ' || last === ""){
+    else if (last === ' ' || str === ""){
         displayCalculation("0.");
     }
-    else {
+    else if (!str.includes(".")){
         displayCalculation(".");
     }
 }
@@ -167,12 +218,7 @@ function handleEquals(event){
 
     else if(miniMenu.operation === 'div'){
         if (miniMenu.rightSide == 0){
-            clearMiniMenu();
-            displayCalculation("MATH ERR!");
-            setTimeout(() => {
-                clearScreen();
-            }, 1000);
-            
+            riseError();
             return;
         }
         total = (+miniMenu.leftSide) / (+miniMenu.rightSide);
